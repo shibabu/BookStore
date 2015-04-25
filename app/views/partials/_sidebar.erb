@@ -11,10 +11,11 @@
     </ul>
   </div>
 
-<% elsif params[:controller]=='books' and (params[:action]=='index' or params[:action]=='show') %>
+<% elsif (params[:controller]=='books' || params[:controller]=='categories') and (params[:action]=='index' || params[:action]=='show') %>
+  <h3>Categories</h3>
   <div class="list-group">
-    <a href="#" class="list-group-item">Ruby on Rails</a>
-    <a href="#" class="list-group-item">PHP</a>
-    <a href="#" class="list-group-item">HTML5</a>
+    <% @categories.each do |category|  %>
+      <%= link_to category.name, category_path(category), class: 'list-group-item' %>
+    <% end %>
   </div>
 <% end %>

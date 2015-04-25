@@ -56,8 +56,20 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
+
+          <!-- Alerts & Messages -->
+          <% if flash[:notice] %>
+            <div class="alert alert-success"><%= flash[:notice] %></div>
+          <% elsif flash[:alert] %>
+            <div class="alert alert-danger"><%= flash[:alert] %> Please check the errors below:</div>
+          <% end %>
+
+
           <%= yield %>
+
+
         </div>
+
         <div class="col-md-4">
           <%= render 'partials/sidebar' %>
         </div>

@@ -1,47 +1,15 @@
 <div id="books-index">
-  <div class="row">
-    <div class="col-md-3 col-sm-3">
-      <h3>Ruby On Rails Power</h3>
-      <%= image_tag 'covers/ruby_on_rails_power.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-    <div class="col-md-3 col-sm-3">
-      <h3>Ajax On Rails</h3>
-      <%= image_tag 'covers/ajax_on_rails.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-    <div class="col-md-3 col-sm-3">
-      <h3>Beginning PHP5</h3>
-      <%= image_tag 'covers/beginning_php_5.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-    <div class="col-md-3 col-sm-3">
-      <h3>Head First PHP</h3>
-      <%= image_tag 'covers/head_first_php.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3 col-sm-3">
-      <h3>Ruby On Rails Power</h3>
-      <%= image_tag 'covers/ruby_on_rails_power.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
+  <% @books.each_slice 4 do |books_slice| %>
+    <div class="row">
+      <% books_slice.each do |book| %>
+        <div class="col-md-3 col-sm-3">
+          <h3><%= book.title %></h3>
+          <%= image_tag book.cover %>
+          <%= link_to 'Read More', book_path(book), class: 'btn btn-primary' %>
+        </div>
+    <% end %>
     </div>
-    <div class="col-md-3 col-sm-3">
-      <h3>Ruby On Rails Power</h3>
-      <%= image_tag 'covers/ruby_on_rails_power.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-    <div class="col-md-3 col-sm-3">
-      <h3>Ruby On Rails Power</h3>
-      <%= image_tag 'covers/ruby_on_rails_power.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-    <div class="col-md-3 col-sm-3">
-      <h3>Ruby On Rails Power</h3>
-      <%= image_tag 'covers/ruby_on_rails_power.jpg' %>
-      <%= link_to 'Read More', book_path(1), class: 'btn btn-primary' %>
-    </div>
-  </div>
+  <% end %>
+
 </div>
