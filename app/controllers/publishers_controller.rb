@@ -16,19 +16,51 @@ class PublishersController < ApplicationController
     end
   end
 
+
   def edit
+    @page_title = 'Edit Publisher'
+    @publisher=Publisher.find params[:id]
   end
 
   def update
+    @publisher=Publisher.find params[:id]
+
+    if @publisher.update publisher_params
+      flash[:notice]='Publisher successfully updated ..'
+
+      redirect_to publisher_path(@publisher)
+    else
+      flash[:alert]="Couldn't update the publisher.."
+
+      render :edit
+    end
   end
 
   def destroy
+    @publisher=Publisher.find params[:id]
+
+    if @publisher.delete
+      flash[:notice]='Publisher successfully deleted..'
+
+      redirect_to publishers_path
+    else
+      flash[:alert]="Couldn't delete the publisher.."
+
+      redirect_to publisher_path(@publisher)
+    end
   end
 
   def index
+    @page_title = 'Publishers'
+    @publishers=Publisher.all
   end
 
   def show
+    @publishers=Publisher.all
+    @publisher=Publisher.find(params[:id])
+    @books=@publisher.books
+
+    @page_title = @publisher.name
   end
 
 

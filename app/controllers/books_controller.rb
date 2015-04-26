@@ -20,15 +20,40 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @page_title = 'Edit Book'
+    @book=Book.find params[:id]
   end
 
   def update
+    @book=Book.find params[:id]
+
+    if @book.update book_params
+      flash[:notice]='Book successfully updated ..'
+
+      redirect_to book_path(@book)
+    else
+      flash[:alert]="Couldn't update the book.."
+
+      render :edit
+    end
   end
 
   def destroy
+    @book=Book.find params[:id]
+
+    if @book.delete
+      flash[:notice]='Book successfully deleted..'
+
+      redirect_to books_path
+    else
+      flash[:alert]="Couldn't delete the book.."
+
+      redirect_to book_path(@book)
+    end
   end
 
   def index
+    @page_title = 'Books'
     @books=Book.all
     @categories=Category.all
   end
@@ -36,6 +61,8 @@ class BooksController < ApplicationController
   def show
     @book=Book.find params[:id]
     @categories=Category.all
+
+    @page_title = @book.title
   end
 
 

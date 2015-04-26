@@ -1,2 +1,17 @@
-<h1>Publishers#show</h1>
-<p>Find me in app/views/publishers/show.html.erb</p>
+<h2><%= @publisher.name %></h2>
+
+<div id="books-index">
+
+  <% @books.each_slice 4 do |books_slice| %>
+    <div class="row">
+      <% books_slice.each do |book| %>
+        <div class="col-md-3 col-sm-3">
+          <h3><%= book.title %></h3>
+          <%= image_tag book.cover %>
+          <%= link_to 'Read More', book_path(book), class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

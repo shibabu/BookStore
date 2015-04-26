@@ -18,4 +18,18 @@
       <%= link_to category.name, category_path(category), class: 'list-group-item' %>
     <% end %>
   </div>
+<% elsif (params[:controller]=='publishers') and (params[:action]=='index' || params[:action]=='show') %>
+  <h3>Publishers</h3>
+  <div class="list-group">
+    <% @publishers.each do |publisher|  %>
+      <%= link_to publisher.name, publisher_path(publisher), class: 'list-group-item' %>
+    <% end %>
+  </div>
+<% elsif (params[:controller]=='authors') and (params[:action]=='index' || params[:action]=='show') %>
+  <h3>Authors</h3>
+  <div class="list-group">
+    <% @authors.each do |author|  %>
+      <%= link_to author.name, author_path(author), class: 'list-group-item' %>
+    <% end %>
+  </div>
 <% end %>

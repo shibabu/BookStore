@@ -17,15 +17,40 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    @page_title = 'Edit Category'
+    @category=Category.find params[:id]
   end
 
   def update
+    @category=Category.find params[:id]
+
+    if @category.update category_params
+      flash[:notice]='Category successfully updated ..'
+
+      redirect_to category_path(@category)
+    else
+      flash[:alert]="Couldn't update the category.."
+
+      render :edit
+    end
   end
 
   def destroy
+    @category=Category.find params[:id]
+
+    if @category.delete
+      flash[:notice]='Category successfully deleted..'
+
+      redirect_to categories_path
+    else
+      flash[:alert]="Couldn't delete the category.."
+
+      redirect_to category_path(@category)
+    end
   end
 
   def index
+    @page_title = 'Categories'
     @categories=Category.all
   end
 
@@ -33,6 +58,8 @@ class CategoriesController < ApplicationController
     @categories=Category.all
     @category=Category.find(params[:id])
     @books=@category.books
+
+    @page_title = @category.name
   end
 
 
